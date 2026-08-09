@@ -101,38 +101,37 @@ h1,h2,h3,.display{font-family:"Archivo Black",system-ui,sans-serif;font-weight:4
   position:sticky;top:0;z-index:40;
   background:var(--putih);
   border-bottom:3px solid var(--hitam);
-  width:100%;
 }
 .nav-inner{
-  max-width:1080px;margin:0 auto;padding:10px 12px;
-  display:flex;align-items:center;gap:6px;justify-content:space-between;
+  max-width:1080px;margin:0 auto;padding:12px 16px;
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
 }
 .logo{display:flex;align-items:center;gap:0;text-decoration:none;transform:rotate(-1.5deg)}
 .logo-word{
-  font-family:"Archivo Black",sans-serif;font-size:clamp(1.1rem, 4vw, 1.7rem);
+  font-family:"Archivo Black",sans-serif;font-size:clamp(1.35rem,5vw,1.7rem);
   letter-spacing:-.03em;line-height:1;
-  padding:6px 8px;border:3px solid var(--hitam);
+  padding:8px 10px;border:3px solid var(--hitam);
   background:var(--putih);box-shadow:var(--shadow-sm);
   display:flex;align-items:center;
 }
 .logo-word .p1{color:var(--hijau)}
 .logo-word .p2{
   color:var(--hitam);background:var(--gold);
-  border:3px solid var(--hitam);margin-left:4px;padding:0 4px;transform:rotate(3deg);
+  border:3px solid var(--hitam);margin-left:6px;padding:0 6px;transform:rotate(3deg);
   display:inline-block;
 }
-.nav-actions{margin-left:auto;display:flex;align-items:center;gap:6px;flex-wrap:nowrap}
+.nav-actions{margin-left:auto;display:flex;align-items:center;gap:8px}
 .btn{
   font-family:"Archivo Black",sans-serif;text-transform:uppercase;
-  font-size:clamp(.65rem, 2.5vw, .8rem);letter-spacing:.01em;
-  display:inline-flex;align-items:center;justify-content:center;gap:4px;
-  padding:8px 10px;cursor:pointer;
+  font-size:clamp(.72rem,2.6vw,.8rem);letter-spacing:.02em;
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:11px clamp(10px,3vw,16px);cursor:pointer;
   border:3px solid var(--hitam);background:var(--putih);color:var(--hitam);
   box-shadow:var(--shadow-sm);
+  min-height:44px;white-space:nowrap;
   transition:transform .12s var(--ease), box-shadow .12s var(--ease);
-  white-space:nowrap;
 }
-.btn .icon{width:14px;height:14px;font-size:14px}
+.btn .icon{width:16px;height:16px;font-size:16px}
 .btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--hitam)}
 .btn:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--hitam)}
 .btn:focus-visible{outline:3px solid var(--merah);outline-offset:3px}
@@ -161,36 +160,33 @@ h1,h2,h3,.display{font-family:"Archivo Black",system-ui,sans-serif;font-weight:4
 
 /* ===== HERO ===== */
 .card{
-  background:var(--putih);border:3px solid var(--hitam);box-shadow:var(--shadow);padding:16px;
-  max-width:100%;overflow:hidden;
+  background:var(--putih);border:3px solid var(--hitam);box-shadow:var(--shadow);padding:22px;
 }
 .card.krem{background:var(--krem)}
 .tag{
-  display:inline-flex;align-items:center;gap:6px;
-  font-family:"Archivo Black",sans-serif;font-size:.65rem;letter-spacing:.05em;text-transform:uppercase;
-  padding:6px 10px;border:3px solid var(--hitam);background:var(--merah);color:var(--putih);
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:"Archivo Black",sans-serif;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;
+  padding:7px 12px;border:3px solid var(--hitam);background:var(--merah);color:var(--putih);
   box-shadow:var(--shadow-sm);transform:rotate(-1.5deg);
-  max-width:100%;
 }
 .tag .icon{width:14px;height:14px}
 .hero h1{
-  margin:14px 0 0;font-size:clamp(1.6rem, 7.5vw, 4.2rem);line-height:1.05;
-  word-break:break-word;
+  margin:18px 0 0;font-size:clamp(2.4rem,9vw,4.2rem);line-height:.92;
 }
 .hero h1 em{
   font-style:normal;display:inline-block;
-  background:var(--gold);border:3px solid var(--hitam);padding:2px 6px;
+  background:var(--gold);border:3px solid var(--hitam);padding:0 10px;
   box-shadow:var(--shadow-sm);transform:rotate(-1deg);
-  max-width:100%;
 }
-.hero h2{margin:14px 0 0;font-size:clamp(0.95rem,3.4vw,1.35rem);color:var(--merah)}
-.hero p{margin:14px 0 0;max-width:52ch;font-size:0.95rem;line-height:1.5;color:#333}
+.hero h2{margin:14px 0 0;font-size:clamp(1rem,3.4vw,1.35rem);color:var(--merah)}
+.hero p{margin:14px 0 0;max-width:52ch;font-size:1rem;line-height:1.6;color:#333}
 .hero-cta{margin-top:22px;display:flex;flex-wrap:wrap;gap:10px}
 
-.stats{margin-top:20px;display:grid;grid-template-columns:repeat(auto-fit, minmax(90px, 1fr));gap:8px}
-.stat{border:3px solid var(--hitam);background:var(--putih);box-shadow:var(--shadow-sm);padding:10px 6px;text-align:center}
-.stat b{display:block;font-family:"Archivo Black",sans-serif;font-size:clamp(0.85rem, 3.5vw, 1.1rem);word-break:break-all}
-.stat span{font-size:.6rem;text-transform:uppercase;letter-spacing:.02em;color:#555;display:block}
+.stats{margin-top:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+.stat b{overflow-wrap:anywhere}
+.stat{border:3px solid var(--hitam);background:var(--putih);box-shadow:var(--shadow-sm);padding:12px 10px}
+.stat b{display:block;font-family:"Archivo Black",sans-serif;font-size:1.1rem}
+.stat span{font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:#555}
 
 /* ===== ARENA ===== */
 .arena-card{padding:18px 18px 22px}
@@ -206,7 +202,7 @@ h1,h2,h3,.display{font-family:"Archivo Black",system-ui,sans-serif;font-weight:4
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
 
 .arena{
-  position:relative;width:100%;height:390px;overflow:hidden;
+  position:relative;width:100%;height:clamp(320px,62vw,390px);overflow:hidden;
   border:3px solid var(--hitam);
   background:
     repeating-linear-gradient(45deg, rgba(255,201,60,.35) 0 14px, transparent 14px 28px),
@@ -232,7 +228,7 @@ h1,h2,h3,.display{font-family:"Archivo Black",system-ui,sans-serif;font-weight:4
 .flag .f-white{background:var(--putih)}
 @keyframes wave{0%,100%{transform:skewY(0) scaleX(1)}50%{transform:skewY(-5deg) scaleX(.96)}}
 
-.prize-ring{position:absolute;top:14px;left:50%;transform:translateX(-50%);width:100%;max-width:260px;height:110px;z-index:4}
+.prize-ring{position:absolute;top:14px;left:50%;transform:translateX(-50%);width:260px;height:110px;z-index:4}
 .mbox{
   position:absolute;width:52px;height:52px;
   display:flex;align-items:center;justify-content:center;
@@ -351,28 +347,6 @@ footer{margin-top:40px;border-top:3px solid var(--hitam);padding-top:16px;
   font-size:.78rem;color:#555;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 footer .icon{width:16px;height:16px}
 
-/* ===== TAMBAHAN STYLE MEMBER ===== */
-.member-box{margin-top:14px;border:3px solid var(--hitam);background:var(--krem);box-shadow:var(--shadow-sm);padding:14px}
-.member-box label{display:block;font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;font-weight:700;margin-bottom:6px}
-.member-row{display:flex;gap:8px}
-.member-row input{flex:1;min-width:0;padding:12px;border:3px solid var(--hitam);background:var(--putih);font-family:inherit;font-size:.95rem}
-.member-row input:focus{outline:none;box-shadow:var(--shadow-sm)}
-.member-row .btn{padding:11px 14px}
-.member-status{margin:10px 0 0;font-size:.75rem;font-weight:700;display:flex;align-items:center;gap:6px}
-.member-status .icon{width:14px;height:14px;color:var(--hijau)}
-.member-locked{opacity:.55;filter:grayscale(.4)}
-
-/* ===== RESPONSIVE EXTRA FOR MOBILE ===== */
-@media (max-width: 480px) {
-  .shell { padding: 14px 10px 60px; }
-  .grid { gap: 14px; }
-  .nav-actions { gap: 4px; }
-  .hero-cta { flex-direction: column; }
-  .hero-cta .btn { width: 100%; justify-content: center; }
-  .member-row { flex-direction: column; }
-  .member-row .btn { width: 100%; }
-}
-
 @media (prefers-reduced-motion: reduce){
   *{animation-duration:.001s !important;transition-duration:.001s !important}
 }
@@ -380,7 +354,7 @@ footer .icon{width:16px;height:16px}
 </head>
 <body>
 
-<!-- ICON SPRITE -->
+<!-- ICON SPRITE (professional line icons) -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
     <g id="i-gift"><rect x="3" y="8" width="18" height="13" rx="1"/><path d="M3 12h18M12 8v13"/><path d="M12 8S10.5 3 8 3a2.5 2.5 0 0 0 0 5h4zM12 8s1.5-5 4-5a2.5 2.5 0 0 1 0 5h-4z"/></g>
@@ -432,7 +406,7 @@ footer .icon{width:16px;height:16px}
       </div>
       <div class="stats">
         <div class="stat"><b id="statPlayers">12.480</b><span>Pemain hari ini</span></div>
-        <div class="stat"><b>Rp.1.000.000</b><span>Bonus tertinggi</span></div>
+        <div class="stat"><b>Rp1000000K</b><span>Bonus tertinggi</span></div>
         <div class="stat"><b id="statCountdown">--</b><span>Sisa event</span></div>
       </div>
     </section>
@@ -782,83 +756,5 @@ footer .icon{width:16px;height:16px}
   tick(); setInterval(tick, 30000);
 })();
 </script>
-
-<!-- ============ TAMBAHAN: ID MEMBER ============ -->
-<script>
-(function(){
-  "use strict";
-  var $ = function(id){ return document.getElementById(id); };
-  var KEY = 'pikat4d_member_id';
-
-  /* ---------- UI: INPUT ID MEMBER ---------- */
-  var ctaWrap = document.querySelector('.cta-wrap');
-  var ctaBtn = $('ctaBtn'), ctaText = $('ctaText');
-  var box = document.createElement('div');
-  box.className = 'member-box';
-  box.innerHTML =
-    '<label for="memberId">Masukkan ID Member PIKAT4D</label>' +
-    '<div class="member-row">' +
-      '<input id="memberId" type="text" inputmode="text" autocomplete="off" maxlength="24" placeholder="contoh: PKT881234" />' +
-      '<button type="button" class="btn btn-gold" id="memberSave">Simpan</button>' +
-    '</div>' +
-    '<p class="member-status" id="memberStatus"></p>';
-  ctaWrap.parentNode.insertBefore(box, ctaWrap);
-
-  var input = $('memberId'), saveBtn = $('memberSave'), status = $('memberStatus');
-  var memberId = '';
-  try { memberId = localStorage.getItem(KEY) || ''; } catch(e){}
-
-  function toast(msg){
-    var t = $('toast'), tx = $('toastText');
-    if(!t || !tx) return;
-    tx.textContent = msg; t.classList.add('show');
-    clearTimeout(toast._t); toast._t = setTimeout(function(){ t.classList.remove('show'); }, 2600);
-  }
-  function valid(v){ return /^[A-Za-z0-9._-]{4,24}$/.test(v); }
-  function render(){
-    if(memberId){
-      status.innerHTML = '<svg class="icon"><use href="#i-check"/></svg> ID aktif: ' + memberId;
-      ctaBtn.classList.remove('member-locked');
-      if(ctaText.textContent === 'Buka Mystery Box') ctaText.textContent = 'Buka Mystery Box';
-    } else {
-      status.innerHTML = '<svg class="icon"><use href="#i-shield"/></svg> Isi ID member dulu untuk membuka box';
-      ctaBtn.classList.add('member-locked');
-    }
-  }
-  function save(){
-    var v = input.value.trim();
-    if(!valid(v)){ toast('ID member minimal 4 karakter (huruf/angka)'); input.focus(); return; }
-    memberId = v;
-    try { localStorage.setItem(KEY, v); } catch(e){}
-    render(); toast('ID member ' + v + ' tersimpan. Silakan buka box!');
-  }
-  saveBtn.addEventListener('click', save);
-  input.addEventListener('keydown', function(e){ if(e.key === 'Enter'){ e.preventDefault(); save(); } });
-  if(memberId) input.value = memberId;
-  render();
-
-  /* gate: blokir buka box kalau ID belum diisi */
-  ctaBtn.addEventListener('click', function(e){
-    var v = input.value.trim();
-    if(memberId && v === memberId) return;
-    if(valid(v)){ save(); return; }
-    e.preventDefault(); e.stopImmediatePropagation();
-    toast('Masukkan ID member kamu dulu ya!');
-    input.focus();
-  }, true);
-
-  /* tampilkan ID pada modal hadiah */
-  var modalNote = document.querySelector('.modal-note');
-  if(modalNote){
-    var original = modalNote.textContent;
-    new MutationObserver(function(){
-      if(document.getElementById('modalOverlay').classList.contains('open') && memberId){
-        modalNote.textContent = 'Bonus untuk ID member ' + memberId + '. ' + original;
-      }
-    }).observe($('modalOverlay'), {attributes:true, attributeFilter:['class']});
-  }
-})();
-</script>
-
 </body>
 </html>
