@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -220,94 +219,33 @@ h1,h2,h3,.display{font-family:"Archivo Black",system-ui,sans-serif;font-weight:4
 .arena{
   position:relative;width:100%;height:390px;overflow:hidden;
   border:3px solid var(--hitam);border-radius:6px;
-  background:
-    repeating-linear-gradient(45deg, rgba(255,201,60,.2) 0 14px, transparent 14px 28px),
-    linear-gradient(180deg, #FFFDF7 0%, var(--krem) 100%);
-  box-shadow:inset 0 0 20px rgba(0,0,0,.05);
+  background:linear-gradient(180deg,#1a1a1a 0%, #000 100%);
+  box-shadow:inset 0 0 20px rgba(0,0,0,.25);
 }
-.arena::after{
-  content:"";position:absolute;left:0;right:0;bottom:0;height:38px;
-  background:var(--hitam);
+.arena-video{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;display:block;background:#000;
 }
-.arena.zooming .pole-wrap{animation:nudge .9s var(--ease)}
-@keyframes nudge{0%,100%{transform:translateX(-50%) scale(1)}50%{transform:translateX(-50%) scale(1.03)}}
-
-.pole-wrap{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);width:26px;height:330px;z-index:3}
-.pole{
-  width:100%;height:100%;border:3px solid var(--hitam);
-  background:repeating-linear-gradient(180deg,#C98F4A 0 16px,#A9713A 16px 32px);
+.arena-overlay{
+  position:absolute;inset:0;z-index:4;pointer-events:none;
+  display:flex;align-items:flex-end;justify-content:center;
+  padding-bottom:14px;
+  background:linear-gradient(180deg, rgba(0,0,0,.28) 0%, transparent 35%, rgba(0,0,0,.45) 100%);
+  transition:opacity .4s var(--ease);
 }
-.flag-pole{position:absolute;top:-24px;left:50%;transform:translateX(-50%);width:4px;height:26px;background:var(--hitam)}
-.flag{position:absolute;top:-22px;left:calc(50% + 3px);width:40px;height:22px;border:2px solid var(--hitam);
-  transform-origin:left center;animation:wave 2.8s ease-in-out infinite;z-index:5}
-.flag div{height:50%}
-.flag .f-red{background:var(--merah)}
-.flag .f-white{background:var(--putih)}
-@keyframes wave{0%,100%{transform:skewY(0) scaleX(1)}50%{transform:skewY(-5deg) scaleX(.96)}}
-
-.prize-ring{
-  position:absolute;
-  top:16px;
-  left:0;
-  right:0;
-  width:100%;
-  padding:0 8px;
-  height:58px;
-  z-index:10;
-  display:flex;
-  justify-content:space-around;
-  align-items:center;
+.arena.playing .arena-overlay{opacity:0}
+.arena-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:"Archivo Black",sans-serif;font-size:.7rem;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--hitam);background:var(--gold);
+  border:2.5px solid var(--hitam);box-shadow:var(--shadow-sm);
+  padding:6px 10px;border-radius:4px;
 }
-/* ----- MYSTERY BOX MEWAH ----- */
-.mbox{
-  position:relative;
-  width:48px;
-  height:48px;
-  min-width:44px;
-  min-height:44px;
-  flex-shrink:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border:3px solid var(--hitam);
-  border-radius:8px;
-  box-shadow:0 4px 0 var(--hitam);
-  background:linear-gradient(135deg, #FFE885 0%, #FFC93C 100%);
-  color:var(--hitam);
-  animation:floatBox 3.4s ease-in-out infinite;
-  transition:all .3s var(--ease);
-  cursor:pointer;
+.arena-badge .icon{width:14px;height:14px}
+.arena-progress{
+  position:absolute;left:0;bottom:0;height:5px;width:0%;
+  background:var(--merah);z-index:6;transition:width .2s linear;
 }
-/* Shading/Glow Mewah Pada Box */
-.mbox::before{
-  content:"";position:absolute;inset:2px;border-radius:4px;
-  background:linear-gradient(180deg, rgba(255,255,255,.6) 0%, transparent 60%);
-  pointer-events:none;
-}
-.mbox:nth-child(1){transform:translateY(8px); background:linear-gradient(135deg, #FFE885, #FFC93C);}
-.mbox:nth-child(2){transform:translateY(0); background:linear-gradient(135deg, #FF4D6D, #E4002B); color:#fff;}
-.mbox:nth-child(3){transform:translateY(12px); background:linear-gradient(135deg, #E0E0E0, #FFFFFF); color:var(--hitam);}
-.mbox:nth-child(4){transform:translateY(0); background:linear-gradient(135deg, #34D399, #12B76A); color:#fff;}
-.mbox:nth-child(5){transform:translateY(8px); background:linear-gradient(135deg, #FFE885, #FFC93C);}
-
-.mbox .box-icon{
-  width:26px;
-  height:26px;
-  filter:drop-shadow(0 2px 2px rgba(0,0,0,.25));
-}
-
-@keyframes floatBox{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-8px) rotate(3deg)}}
-.mbox.shaking{animation:shakeBox .45s ease-in-out infinite}
-@keyframes shakeBox{0%,100%{transform:translate(0,0) rotate(-5deg)}25%{transform:translate(-4px,2px) rotate(8deg)}50%{transform:translate(4px,-3px) rotate(-9deg)}75%{transform:translate(-2px,3px) rotate(6deg)}}
-.mbox.chosen-glow{background:#FFF;box-shadow:0 0 0 5px var(--gold), 0 6px 0 var(--hitam); transform:scale(1.15) translateY(-5px); z-index:15;}
-.mbox.opened{opacity:0;transform:scale(.3) translateY(-30px)}
-.mbox.dim{opacity:.25; filter:grayscale(.5);}
-
-.climber{position:absolute;bottom:38px;left:50%;width:40px;height:54px;transform:translateX(-50%);z-index:6;
-  transition:bottom 3.2s var(--ease)}
-.climber svg{width:100%;height:100%;display:block}
-.climber.climbing{animation:bounce .32s ease-in-out infinite alternate}
-@keyframes bounce{from{transform:translateX(-50%) translateY(0)}to{transform:translateX(-50%) translateY(-5px)}}
 
 /* ===== MEMBER INPUT & CTA AREA ===== */
 .member-box{
@@ -518,6 +456,7 @@ footer .icon{width:16px;height:16px;color:var(--merah)}
       <div class="stats">
         <div class="stat"><span>Pemain Hari Ini</span><b id="statPlayers">12.480</b></div>
         <div class="stat"><span>Bonus Tertinggi</span><b>Rp1,000,000</b></div>
+        <div class="stat"><span>Sisa Event</span><b id="statCountdown">--</b></div>
       </div>
     </section>
 
@@ -529,31 +468,14 @@ footer .icon{width:16px;height:16px;color:var(--merah)}
       </div>
 
       <div class="arena" id="arena">
-        <!-- RING MYSTERY BOX DENGAN ICON PRESISI & MEWAH -->
-        <div class="prize-ring" id="prizeRing">
-          <div class="mbox" data-box="0"><svg class="icon box-icon"><use href="#i-gift"/></svg></div>
-          <div class="mbox" data-box="1"><svg class="icon box-icon"><use href="#i-coins"/></svg></div>
-          <div class="mbox" data-box="2"><svg class="icon box-icon"><use href="#i-gem"/></svg></div>
-          <div class="mbox" data-box="3"><svg class="icon box-icon"><use href="#i-trophy"/></svg></div>
-          <div class="mbox" data-box="4"><svg class="icon box-icon"><use href="#i-gift"/></svg></div>
+        <video class="arena-video" id="arenaVideo" playsinline muted preload="auto" poster="">
+          <source src="panjat-pinang.mp4" type="video/mp4">
+          Browser kamu tidak mendukung pemutaran video.
+        </video>
+        <div class="arena-overlay">
+          <span class="arena-badge"><svg class="icon"><use href="#i-play"/></svg>Tekan tombol untuk mulai panjat</span>
         </div>
-
-        <div class="pole-wrap">
-          <div class="flag-pole"></div>
-          <div class="flag"><div class="f-red"></div><div class="f-white"></div></div>
-          <div class="pole"></div>
-        </div>
-
-        <div class="climber" id="climber">
-          <svg viewBox="0 0 44 60" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="22" cy="11" r="8" fill="#FFC93C" stroke="#0B0B0B" stroke-width="3"/>
-            <rect x="13" y="21" width="18" height="22" rx="3" fill="#E4002B" stroke="#0B0B0B" stroke-width="3"/>
-            <rect x="4" y="22" width="8" height="16" rx="3" fill="#FFC93C" stroke="#0B0B0B" stroke-width="3"/>
-            <rect x="32" y="22" width="8" height="16" rx="3" fill="#FFC93C" stroke="#0B0B0B" stroke-width="3"/>
-            <rect x="13" y="43" width="7" height="15" rx="3" fill="#0B0B0B"/>
-            <rect x="24" y="43" width="7" height="15" rx="3" fill="#0B0B0B"/>
-          </svg>
-        </div>
+        <div class="arena-progress" id="arenaProgress"></div>
       </div>
 
       <!-- MEMBER ID CONTAINER DI-EMBED SECARA MODERN -->
@@ -731,61 +653,73 @@ footer .icon{width:16px;height:16px;color:var(--merah)}
     }
   }
 
-  /* ---------- GAME ---------- */
-  var ctaBtn = $('ctaBtn'), ctaText = $('ctaText'), arena = $('arena'), climber = $('climber');
-  var boxes = Array.prototype.slice.call(document.querySelectorAll('.mbox'));
+  /* ---------- GAME (VIDEO PANJAT PINANG) ---------- */
+  var ctaBtn = $('ctaBtn'), ctaText = $('ctaText'), arena = $('arena');
+  var arenaVideo = $('arenaVideo'), arenaProgress = $('arenaProgress');
   var modalOverlay = $('modalOverlay'), modalAmount = $('modalAmount');
-  var isPlaying = false, timers = [];
+  var isPlaying = false, timers = [], fallbackTimer = null, currentAmount = 0;
 
   function later(fn, ms){ timers.push(setTimeout(fn, ms)); }
-  function clearTimers(){ timers.forEach(clearTimeout); timers = []; }
+  function clearTimers(){ timers.forEach(clearTimeout); timers = []; if(fallbackTimer){ clearTimeout(fallbackTimer); fallbackTimer = null; } }
 
-  function resetBoxes(){
-    boxes.forEach(function(b){ b.className = b.className.replace(/\s*(shaking|chosen-glow|opened|dim)/g,''); });
+  function showPrize(){
+    if(!isPlaying) return;
+    isPlaying = false;
+    clearTimers();
+    arena.classList.remove('playing');
+    modalAmount.textContent = rupiah(currentAmount);
+    modalAmount.classList.remove('reveal');
+    void modalAmount.offsetWidth;
+    modalOverlay.classList.add('open');
+    modalAmount.classList.add('reveal');
+    confetti();
+    ctaBtn.classList.remove('loading');
+    ctaText.textContent = 'Hadiah Sudah Dibuka';
   }
+
+  arenaVideo.addEventListener('timeupdate', function(){
+    if(arenaVideo.duration){
+      arenaProgress.style.width = ((arenaVideo.currentTime / arenaVideo.duration) * 100) + '%';
+    }
+  });
+  arenaVideo.addEventListener('ended', showPrize);
+  arenaVideo.addEventListener('error', function(){ if(isPlaying) later(showPrize, 1200); });
 
   function playGame(){
     if(isPlaying) return;
     isPlaying = true;
     clearTimers();
-    resetBoxes();
 
     ctaBtn.classList.add('loading');
     ctaBtn.disabled = true;
-    ctaText.textContent = 'Membuka Mystery Box...';
+    ctaText.textContent = 'Panjat Pinang Berjalan...';
 
-    climber.classList.add('climbing');
-    climber.style.bottom = '280px';
-    arena.classList.add('zooming');
+    currentAmount = pickReward();
 
-    var amount = pickReward();
-    var chosen = boxes[Math.floor(Math.random()*boxes.length)];
+    arena.classList.add('playing');
+    arenaProgress.style.width = '0%';
 
-    later(function(){ boxes.forEach(function(b){ b.classList.add('shaking'); }); }, 700);
+    try { arenaVideo.currentTime = 0; } catch(e){}
+    var p = arenaVideo.play();
+    if(p && p.catch){
+      p.catch(function(){
+        /* video tidak bisa diputar (autoplay diblokir / file tidak tersedia) */
+        fallbackTimer = setTimeout(showPrize, 3500);
+      });
+    }
+    /* jaring aman kalau event "ended" tidak pernah terjadi */
     later(function(){
-      boxes.forEach(function(b){ if(b!==chosen){ b.classList.remove('shaking'); b.classList.add('dim'); } });
-      chosen.classList.add('chosen-glow');
-    }, 2000);
-    later(function(){ chosen.classList.add('opened'); climber.classList.remove('climbing'); }, 2900);
-    later(function(){
-      modalAmount.textContent = rupiah(amount);
-      modalAmount.classList.remove('reveal');
-      void modalAmount.offsetWidth;
-      modalOverlay.classList.add('open');
-      modalAmount.classList.add('reveal');
-      confetti();
-      ctaBtn.classList.remove('loading');
-      ctaText.textContent = 'Hadiah Sudah Dibuka';
-    }, 3500);
+      if(isPlaying && (!arenaVideo.duration || arenaVideo.paused)) showPrize();
+    }, 8000);
   }
 
   function resetGame(){
     clearTimers();
     modalOverlay.classList.remove('open');
-    resetBoxes();
-    climber.style.bottom = '38px';
-    climber.classList.remove('climbing');
-    arena.classList.remove('zooming');
+    arena.classList.remove('playing');
+    arenaProgress.style.width = '0%';
+    arenaVideo.pause();
+    try { arenaVideo.currentTime = 0; } catch(e){}
     ctaBtn.disabled = false;
     ctaBtn.classList.remove('loading');
     ctaText.textContent = 'Buka Mystery Box';
