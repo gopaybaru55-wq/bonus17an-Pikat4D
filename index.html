@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -404,6 +405,15 @@ h1,h2,h3,.display{font-family:"Archivo Black",system-ui,sans-serif;font-weight:4
 .switch-note{margin:14px 0 0;font-size:.8rem;color:#555}
 .switch-note button{background:none;border:none;font:inherit;font-weight:700;color:var(--merah);cursor:pointer;text-decoration:underline}
 
+/* ===== VIDEO MODAL (Ambil Hadiah) ===== */
+.video-modal-card{max-width:420px}
+.video-modal-card .modal-head{background:var(--hitam);color:var(--gold);border-bottom:3.5px solid var(--hitam)}
+.video-modal-card video{
+  width:100%;display:block;background:#000;max-height:60vh;border-bottom:3px solid var(--hitam);
+}
+.video-modal-card .modal-body{padding:16px}
+.video-modal-card .modal-note{margin:0 0 14px}
+
 /* ===== TOAST ===== */
 .toast{
   position:fixed;left:50%;bottom:20px;transform:translate(-50%,20px);
@@ -473,6 +483,7 @@ footer .icon{width:16px;height:16px;color:var(--merah)}
     <g id="i-x"><path d="M18 6 6 18M6 6l12 12"/></g>
     <g id="i-target"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></g>
     <g id="i-mountain"><path d="M8 3 2 21h20L14 3l-3 7z"/></g>
+    <g id="i-play"><path d="M6 3l14 9-14 9V3z"/></g>
   </defs>
 </svg>
 
@@ -507,6 +518,7 @@ footer .icon{width:16px;height:16px;color:var(--merah)}
       <div class="stats">
         <div class="stat"><span>Pemain Hari Ini</span><b id="statPlayers">12.480</b></div>
         <div class="stat"><span>Bonus Tertinggi</span><b>Rp1,000,000</b></div>
+        <div class="stat"><span>Sisa Event</span><b id="statCountdown">--</b></div>
       </div>
     </section>
 
@@ -596,6 +608,27 @@ footer .icon{width:16px;height:16px;color:var(--merah)}
       <div class="modal-actions">
         <button class="btn btn-primary" id="claimBtn"><svg class="icon"><use href="#i-check"/></svg>Ambil Hadiah</button>
         <button class="btn btn-ghost" id="retryBtn"><svg class="icon"><use href="#i-zap"/></svg>Coba Lagi</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- VIDEO MODAL: muncul saat klik "Ambil Hadiah" -->
+<div class="modal-overlay" id="videoOverlay" role="dialog" aria-modal="true" aria-labelledby="videoTitle">
+  <div class="modal-card video-modal-card">
+    <div class="modal-head">
+      <svg class="icon"><use href="#i-play"/></svg>
+      <h3 id="videoTitle">Panjat Pinang Kamu</h3>
+      <button class="modal-close" id="videoClose" aria-label="Tutup"><svg class="icon"><use href="#i-x"/></svg></button>
+    </div>
+    <video id="hadiahVideo" playsinline preload="metadata" controls>
+      <source src="panjat-pinang.mp4" type="video/mp4">
+      Browser kamu tidak mendukung pemutaran video.
+    </video>
+    <div class="modal-body">
+      <p class="modal-note">Selamat! Hadiahmu sudah diklaim dan sedang diproses ke akunmu.</p>
+      <div class="modal-actions">
+        <a class="btn btn-primary" href="https://pikat4d01.com/" target="_blank" rel="noopener"><svg class="icon"><use href="#i-user-plus"/></svg>Daftar Sekarang</a>
       </div>
     </div>
   </div>
@@ -761,10 +794,29 @@ footer .icon{width:16px;height:16px;color:var(--merah)}
   }
 
   ctaBtn.addEventListener('click', playGame);
+
+  /* ---------- VIDEO MODAL: Ambil Hadiah ---------- */
+  var videoOverlay = $('videoOverlay'), videoClose = $('videoClose'), hadiahVideo = $('hadiahVideo');
+
+  function openVideoModal(){
+    videoOverlay.classList.add('open');
+    var p = hadiahVideo.play();
+    if(p !== undefined){ p.catch(function(){ /* autoplay diblokir, user tetap bisa tekan play di controls */ }); }
+  }
+  function closeVideoModal(){
+    videoOverlay.classList.remove('open');
+    hadiahVideo.pause();
+    hadiahVideo.currentTime = 0;
+  }
+
   $('claimBtn').addEventListener('click', function(){
     modalOverlay.classList.remove('open');
     showToast('Hadiah berhasil diklaim!');
+    openVideoModal();
   });
+  videoClose.addEventListener('click', closeVideoModal);
+  videoOverlay.addEventListener('click', function(e){ if(e.target===videoOverlay) closeVideoModal(); });
+
   $('retryBtn').addEventListener('click', resetGame);
   $('modalClose').addEventListener('click', function(){ modalOverlay.classList.remove('open'); });
   modalOverlay.addEventListener('click', function(e){ if(e.target===modalOverlay) modalOverlay.classList.remove('open'); });
@@ -807,7 +859,7 @@ footer .icon{width:16px;height:16px;color:var(--merah)}
   });
 
   document.addEventListener('keydown', function(e){
-    if(e.key === 'Escape'){ modalOverlay.classList.remove('open'); authOverlay.classList.remove('open'); }
+    if(e.key === 'Escape'){ modalOverlay.classList.remove('open'); authOverlay.classList.remove('open'); closeVideoModal(); }
   });
 
   /* ---------- LIVE STATS ---------- */
